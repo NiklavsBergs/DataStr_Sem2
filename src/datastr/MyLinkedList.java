@@ -64,6 +64,8 @@ public class MyLinkedList<T> {
 				tempNode2.setPrevious(newNode);
 				newNode.setNext(tempNode2);
 				
+				elementCount++;
+				
 				/*MyNode<T> newNode = new MyNode<T>(newElement);
 				newNode.setNext(tempNode.getNext());
 				newNode.setPrevious(tempNode);
@@ -71,6 +73,17 @@ public class MyLinkedList<T> {
 				elementCount++;*/
 			}
 		}
+	}
+	
+	public void print() {
+		//chek if not empty first
+		
+		MyNode tempNode = first;
+		while(tempNode != null) {
+			System.out.print(tempNode);
+			tempNode = tempNode.getNext();
+		}
+		System.out.println();
 	}
 	
 }
