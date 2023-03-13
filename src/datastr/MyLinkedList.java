@@ -24,13 +24,40 @@ public class MyLinkedList<T> {
 	}
 	
 	public void removeLast() {
-		last.getPrevious().setNext(null);
+		last = last.getPrevious();
+		last.setNext(null);
 		elementCount--;
 	}
 	
 	public void removeFirst() {
-		first.getNext().setPrevious(null);
+		first = first.getNext();
+		first.setPrevious(null);
 		elementCount--;	
+	}
+	
+	public void remove(int position) {
+		//check if not empty or bad position
+		
+		if (position == 0) {
+			removeFirst();
+		}
+		else if (position == elementCount-1) {
+			removeLast();
+		}
+		else {
+			MyNode tempNode = first;
+			for(int i = 0; i < position; i++) {
+				tempNode = tempNode.getNext();
+			}
+			
+			MyNode prevNode = tempNode.getPrevious();
+			MyNode nextNode = tempNode.getNext();
+			prevNode.setNext(nextNode);
+			nextNode.setPrevious(prevNode);
+			elementCount--;
+			
+		}
+		
 	}
 	
 	public void add(T newElement, int position) throws Exception{
@@ -80,10 +107,12 @@ public class MyLinkedList<T> {
 		
 		MyNode tempNode = first;
 		while(tempNode != null) {
-			System.out.print(tempNode);
+			System.out.print(tempNode + " ");
 			tempNode = tempNode.getNext();
 		}
 		System.out.println();
 	}
+
+
 	
 }
